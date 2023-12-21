@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/adminLTE/css/adminlte.min.css') }}">
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
         <x-portal.navbar />
         <x-portal.sidebar />
@@ -22,11 +22,11 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">{{ $label ?? 'Dashboard' }}</h1>
+                            <h1 class="m-0">@yield('title', 'Dashboard')</h1>
                         </div>
                         <div class="col-sm-6">
                             <div class="float-sm-right">
-                                {{ Breadcrumbs::render('portal.index') }}
+                                @yield('breadcrumbs')
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PortalController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,10 @@ Route::get('home', function() {
 Route::group(['prefix'=>'portal', 'as'=>'portal.'], function () {
     Route::get('/', [PortalController::class, 'index'])->name('index');
     Route::get('inventory', [PortalController::class, 'inventory'])->name('inventory');
+
+    Route::group(['prefix' => 'employee', 'as'=>'employee.'], function () {
+        Route::get('/', [EmployeeController::class, 'index'])->name('index');
+        Route::get('invite', [EmployeeController::class, 'invite'])->name('invite');
+
+    });
 });

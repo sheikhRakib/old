@@ -21,7 +21,7 @@ class MultiItem extends Component
         $this->label = $label;
         $this->icon = $icon;
         $this->badge = $badge;
-        $this->active = Request::routeIs($route) ? true : false;
+        $this->active = Request::routeIs($route."*") ? true : false;
     }
 
     public function render(): View|Closure|string
