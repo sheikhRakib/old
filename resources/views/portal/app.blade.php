@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/ionicons/ionicons.min.css') }}">
+    @stack('css')
     <link rel="stylesheet" href="{{ asset('vendor/adminLTE/css/adminlte.min.css') }}">
 </head>
 
@@ -43,7 +44,9 @@
 
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    @stack('js')
     <script src="{{ asset('vendor/adminLTE/js/adminlte.js') }}"></script>
+    @stack('script')
 </body>
 
 </html>
