@@ -5,6 +5,8 @@
     </a>
 
     <div class="sidebar">
+        <x-portal.sidebar.user-card />
+
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <x-portal.sidebar.item label="Dashboard" route="portal.index" icon="tachometer-alt" />
@@ -14,13 +16,15 @@
                     <x-portal.sidebar.item label="Index" route="portal.employee.index" icon="address-card" />
                     <x-portal.sidebar.item label="Invite" route="portal.employee.invite" icon="user-plus" />
                 </x-portal.sidebar.multi-item>
+
+
+                <li class="nav-item fixed-bottom">
+                    <a href="#" class="nav-link btn btn-danger">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <p>Logout</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
-
-    <div class="sidebar-custom">
-        <a href="#" class="btn btn-link"><i class="fas fa-cogs"></i></a>
-        <a href="#" class="btn btn-secondary hide-on-collapse pos-right">Help</a>
-    </div>
-
 </aside>
