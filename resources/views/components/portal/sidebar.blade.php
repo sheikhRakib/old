@@ -16,15 +16,10 @@
                     <x-portal.sidebar.item label="Index" route="portal.employee.index" icon="address-card" />
                     <x-portal.sidebar.item label="Invite" route="portal.employee.invite" icon="user-plus" />
                 </x-portal.sidebar.multi-item>
-
-
-                <li class="nav-item fixed-bottom">
-                    <a href="#" class="nav-link btn btn-danger">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <p>Logout</p>
-                    </a>
-                </li>
             </ul>
         </nav>
+    </div>
+    <div class="sidebar-custom">
+        <a href="#" class="btn btn-block btn-danger"><i class="fas fa-sign-out-alt"></i></a>
     </div>
 </aside>
