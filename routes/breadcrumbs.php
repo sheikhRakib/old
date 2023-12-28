@@ -10,15 +10,23 @@ use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
 
 // Dashboard
-Breadcrumbs::for('portal.index', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('portal', function (BreadcrumbTrail $trail) {
     $trail->push('Dashboard', route('portal.index'));
 });
 
-// // Home > Blog
-// Breadcrumbs::for('portal.inventory', function (BreadcrumbTrail $trail) {
-//     $trail->parent('home');
-//     $trail->push('Index', route('portal.inventory'));
-// });
+// Dashboard > Employee
+Breadcrumbs::for('portal.employee', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal');
+    $trail->push('Employee', route('portal.employee.index'));
+});
+
+// Dashboard > Employee > Invite
+Breadcrumbs::for('portal.employee.invite', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal.employee');
+    $trail->push('Invite', route('portal.employee.invite'));
+});
+
+
 
 // // Home > Blog > [Category]
 // Breadcrumbs::for('category', function (BreadcrumbTrail $trail, $category) {
