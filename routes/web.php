@@ -19,11 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
-Route::get('home', function() {
-    return view('welcome');
-})->name('home');
+Route::redirect('home', 'portal')->name('home');
 
-Route::group(['prefix'=>'portal', 'as'=>'portal.'], function () {
+Route::group(['prefix'=>'portal', 'as'=>'portal.', 'middleware'=>'auth'], function () {
     Route::get('/', [PortalController::class, 'index'])->name('index');
     Route::get('inventory', [PortalController::class, 'inventory'])->name('inventory');
 

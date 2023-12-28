@@ -12,14 +12,21 @@
                 <x-portal.sidebar.item label="Dashboard" route="portal.index" icon="tachometer-alt" />
 
                 <x-portal.sidebar.header label="EMPLOYEE MANAGEMENT" />
-                <x-portal.sidebar.multi-item label="Employees" route="portal.employee" icon="users">
-                    <x-portal.sidebar.item label="Index" route="portal.employee.index" icon="address-card" />
-                    <x-portal.sidebar.item label="Invite" route="portal.employee.invite" icon="user-plus" />
-                </x-portal.sidebar.multi-item>
+                    <x-portal.sidebar.multi-item label="Employees" route="portal.employee" icon="users">
+                        <x-portal.sidebar.item label="Index" route="portal.employee.index" icon="address-card" />
+                        @can('p.member.invite')
+                            <x-portal.sidebar.item label="Invite" route="portal.employee.invite" icon="user-plus" />
+                        @endcan
+                    </x-portal.sidebar.multi-item>
             </ul>
         </nav>
     </div>
     <div class="sidebar-custom">
-        <a href="#" class="btn btn-block btn-danger"><i class="fas fa-sign-out-alt"></i></a>
+        <a href="{{ route('logout') }}" class="btn btn-block btn-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
     </div>
+    <form class="d-none" id="logout-form" action="{{ route('logout') }}" method="POST">
+        @csrf
+    </form>
 </aside>

@@ -28,7 +28,9 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <h3 class="card-title">Member List</h3>
-                        <a href="{{ route('portal.employee.invite') }}" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i> Invite member</a>
+                        @can('perm.member.invite')
+                            <a href="{{ route('portal.employee.invite') }}" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i> Invite member</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="card-body">
@@ -44,104 +46,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Jose Farnandez</td>
-                                <td>user@nmt.edu</td>
-                                <td>900123456</td>
-                                <td>Director</td>
-                                <td><small class="badge badge-success">active</small></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a type="button" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                        <a type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                        <a type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Peter Mertinez</td>
-                                <td>user@nmt.edu</td>
-                                <td>900123456</td>
-                                <td>Lead Classroom Specialist</td>
-                                <td><small class="badge badge-success">active</small></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a type="button" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                        <a type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                        <a type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Curtis Warren</td>
-                                <td>user@nmt.edu</td>
-                                <td>900123456</td>
-                                <td>LMS Specialist</td>
-                                <td><small class="badge badge-success">active</small></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a type="button" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                        <a type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                        <a type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Gabriel</td>
-                                <td>user@nmt.edu</td>
-                                <td>900123456</td>
-                                <td>Technology Specialist</td>
-                                <td><small class="badge badge-success">active</small></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a type="button" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                        <a type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                        <a type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Rakibul Islam</td>
-                                <td>user@nmt.edu</td>
-                                <td>900123456</td>
-                                <td>Student Support Tech</td>
-                                <td><small class="badge badge-danger">inactive</small></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a type="button" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                        <a type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                        <a type="button" class="btn btn-success"><i class="fas fa-check-square"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Sonya Torres</td>
-                                <td>user@nmt.edu</td>
-                                <td>900123456</td>
-                                <td>Support Tech</td>
-                                <td><small class="badge badge-success">active</small></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a type="button" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                        <a type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                        <a type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Cheyenne Benavidez</td>
-                                <td>user@nmt.edu</td>
-                                <td>900123456</td>
-                                <td>Support Admin</td>
-                                <td><small class="badge badge-success">active</small></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a type="button" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                        <a type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                        <a type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @forelse ($users as $user)
+                                <tr>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>900123456</td>
+                                    <td>Member</td>
+                                    <td><small class="badge badge-success">active</small></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            @can('p.member.view')
+                                                <a type="button" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                            @endcan
+                                            @can('p.member.edit')
+                                                <a type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                            @endcan
+                                            @can('p.member.delete')
+                                                <a type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                            @endcan
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td>No Data Found</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
