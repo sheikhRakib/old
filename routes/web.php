@@ -21,13 +21,13 @@ Route::get('/', function () {
 
 Route::redirect('home', 'portal')->name('home');
 
-Route::group(['prefix'=>'portal', 'as'=>'portal.', 'middleware'=>'auth'], function () {
+Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => 'auth'], function () {
     Route::get('/', [PortalController::class, 'index'])->name('index');
     Route::get('inventory', [PortalController::class, 'inventory'])->name('inventory');
 
-    Route::group(['prefix' => 'employee', 'as'=>'employee.'], function () {
+    Route::group(['prefix' => 'employee', 'as' => 'employee.'], function () {
         Route::get('/', [EmployeeController::class, 'index'])->name('index');
         Route::get('invite', [EmployeeController::class, 'invite'])->name('invite');
-
+        Route::post('invite', [EmployeeController::class, 'sendInvitation'])->name('sendInvite');
     });
 });
