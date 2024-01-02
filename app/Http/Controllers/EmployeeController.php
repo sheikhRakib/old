@@ -48,4 +48,11 @@ class EmployeeController extends Controller
 
         return view('portal.employee.invite');
     }
+
+    public function list()
+    {
+        $data['users'] = InvitationToken::all();
+
+        return view('portal.employee.invite-list', $data);
+    }
 }
