@@ -14,11 +14,18 @@
                 <div class="card-header">
                     <h3 class="card-title">Invitation Form</h3>
                 </div>
-                <form>
+
+                <form action="{{ route('portal.employee.sendInvite') }}" method="POST">
+                    @csrf
                     <div class="card-body">
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="someone@example.com">
+                            <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="someone@example.com">
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">Send Invitation</button>
                     </div>
