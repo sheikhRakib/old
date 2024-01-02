@@ -15,7 +15,7 @@
                     <h3 class="card-title">Invitation Form</h3>
                 </div>
 
-                <form action="{{ route('portal.employee.sendInvite') }}" method="POST">
+                <form action="{{ route('portal.employee.invite.send') }}" method="POST">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">

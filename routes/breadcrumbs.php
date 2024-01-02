@@ -20,10 +20,15 @@ Breadcrumbs::for('portal.employee', function (BreadcrumbTrail $trail) {
     $trail->push('Employee', route('portal.employee.index'));
 });
 
-// Dashboard > Employee > Invite
+Breadcrumbs::for('portal.employee.invite.list', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal.employee');
+    $trail->push('Invitee List', route('portal.employee.invite.list'));
+});
+
+// Dashboard > Employee > Invite > View
 Breadcrumbs::for('portal.employee.invite', function (BreadcrumbTrail $trail) {
     $trail->parent('portal.employee');
-    $trail->push('Invite', route('portal.employee.invite'));
+    $trail->push('Invite', route('portal.employee.invite.view'));
 });
 
 
