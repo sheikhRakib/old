@@ -39,6 +39,7 @@
                             <tr>
                                 <th>Email</th>
                                 <th>Invitation Date</th>
+                                <th>Token</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -48,6 +49,7 @@
                                 <tr>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->updated_at }}</td>
+                                    <td>{{ $user->token }}</td>
                                     <td><small class="badge badge-success">active</small></td>
                                     <td>
                                         <div class="btn-group">
@@ -65,7 +67,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4">No Data Found</td>
+                                    <td colspan="5">No Data Found</td>
                                 </tr>
                             @endforelse
                         </tbody>
