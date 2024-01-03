@@ -35,14 +35,15 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
         Fortify::loginView('auth.login');
-        Fortify::registerView(function (Request $request) {
-            if (!$request['token']) {
-                abort(401);
-            }
-            $invitation = InvitationToken::find($request['token']);
+        Fortify::registerView(function (Request $request)
+        {
+            if(!$request['token']) abort(401);
 
-            return $invitation;
-            return view('auth.register');
+            $data['invitation'] = InvitationToken::where('token', $request['token'])->first();
+
+            if(!$data['invitation']) abort(401);
+
+            return view('auth.register', $data);
         });
 
         RateLimiter::for('login', function (Request $request) {

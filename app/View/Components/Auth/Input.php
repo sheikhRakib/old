@@ -13,16 +13,20 @@ class Input extends Component
     public $id;
     public $type;
     public $icon;
+    public $value;
     public $placeholder;
+    public $disabled;
 
-    public function __construct($name, $label, $id='', $type='text', $icon='fa-circle',  $placeholder='')
+    public function __construct($name, $label, $id = '', $type = 'text', $icon = 'fa-circle', $placeholder = '', $value = '', $disabled = '')
     {
-        $this->name     = $name;
-        $this->label    = $label;
-        $this->id       = $id ? $id : $name;
-        $this->type     = $type;
-        $this->icon     = $icon;
+        $this->name = $name;
+        $this->label = $label;
+        $this->id = $id ? $id : $name;
+        $this->type = $type;
+        $this->icon = $icon;
         $this->placeholder = $placeholder ? $placeholder : $label;
+        $this->value = $value;
+        $this->disabled = $disabled;
     }
 
     public function render(): View|Closure|string
