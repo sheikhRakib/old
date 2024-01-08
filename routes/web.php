@@ -35,10 +35,6 @@ Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => 'auth'], 
     // Portal > Invite
     Route::resource('invitation', InvitationController::class)->except(['edit', 'update', 'show']);
 
-    // Portal > Roles&Permissions
-    Route::group(['prefix' => 'permissions', 'as' => 'permissions.'], function () {
-        Route::get('/', [PermissionController::class, 'index'])->name('index');
-        Route::get('{permission}', [PermissionController::class, 'edit'])->name('edit');
-        Route::put('{permission}', [PermissionController::class, 'update'])->name('update');
-    });
+    // Portal > Permissions
+    Route::resource('permission', PermissionController::class)->except(['create', 'store', 'destroy']);
 });

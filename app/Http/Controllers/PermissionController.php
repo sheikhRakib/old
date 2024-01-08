@@ -30,6 +30,6 @@ class PermissionController extends Controller
         $permission->save();
 
         Session::flash('success', 'Permission Details Updated');
-        return redirect()->route('portal.permissions.index');
+        return redirect()->route('portal.permission.index');
     }
 }

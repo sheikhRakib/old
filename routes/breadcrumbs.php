@@ -33,13 +33,13 @@ Breadcrumbs::for('portal.invitation.create', function (BreadcrumbTrail $trail) {
 });
 
 // Dashboard > Permissions
-Breadcrumbs::for('portal.permissions', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('portal.permission', function (BreadcrumbTrail $trail) {
     $trail->parent('portal');
-    $trail->push('Permissions', route('portal.permissions.index'));
+    $trail->push('Permissions', route('portal.permission.index'));
 });
 
 // Dashboard > Permissions > [Permission]
-Breadcrumbs::for('portal.permissions.edit', function (BreadcrumbTrail $trail, Permission $permission) {
-    $trail->parent('portal.permissions');
-    $trail->push($permission->name, route('portal.permissions.edit', $permission));
+Breadcrumbs::for('portal.permission.edit', function (BreadcrumbTrail $trail, Permission $permission) {
+    $trail->parent('portal.permission');
+    $trail->push($permission->name, route('portal.permission.edit', $permission));
 });
