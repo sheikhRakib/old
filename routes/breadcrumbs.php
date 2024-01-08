@@ -43,3 +43,17 @@ Breadcrumbs::for('portal.permission.edit', function (BreadcrumbTrail $trail, Per
     $trail->parent('portal.permission');
     $trail->push($permission->name, route('portal.permission.edit', $permission));
 });
+
+// Dashboard > Roles
+Breadcrumbs::for('portal.role', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal');
+    $trail->push('Roles', route('portal.role.index'));
+});
+
+// Dashboard > Roles > Create
+Breadcrumbs::for('portal.role.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal.role');
+    $trail->push('Create', route('portal.role.create'));
+});
+
+

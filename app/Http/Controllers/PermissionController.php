@@ -11,12 +11,12 @@ class PermissionController extends Controller
     public function index()
     {
         $data['permissions'] = Permission::all();
-        return view('portal.permissions.index', $data);
+        return view('portal.permission.index', $data);
     }
 
     public function edit(Permission $permission)
     {
-        return view('portal.permissions.edit', compact('permission'));
+        return view('portal.permission.edit', compact('permission'));
     }
 
     public function update(Permission $permission, Request $request)

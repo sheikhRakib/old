@@ -1,9 +1,9 @@
 @extends('portal.app')
 
-@section('title', 'Invitees')
+@section('title', 'Roles')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('portal.employee.invite.list') }}
+    {{ Breadcrumbs::render('portal.role') }}
 @endsection
 
 @push('css')
@@ -24,42 +24,35 @@
 @section('content')
     <div class="container-fluid">
         <div class="col-md-12">
+
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <h3 class="card-title">Member List</h3>
-                        @can('p.member.invite')
-                            <a href="{{ route('portal.employee.invite.send') }}" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i> Invite member</a>
-                        @endcan
+                        <h3 class="card-title">Roles</h3>
+                        <a href="{{ route('portal.role.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i> Create New Role</a>
                     </div>
                 </div>
                 <div class="card-body">
                     <table id="memberslist" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Email</th>
-                                <th>Invitation Date</th>
-                                <th style="width: 10%">Status</th>
+                                <th>Role</th>
+                                <th>Display Name</th>
+                                <th>Description</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($users as $user)
+                            @forelse ($roles as $role)
                                 <tr>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->updated_at }}</td>
-                                    <td><small class="badge badge-success">active</small></td>
+                                    <td>{{ $role->name }}</td>
+                                    <td>{{ $role->displayname ?? '-' }}</td>
+                                    <td>{{ $role->description ?? '-' }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            @can('p.member.view')
-                                                <a type="button" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                            @endcan
-                                            @can('p.member.edit')
-                                                <a type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                            @endcan
-                                            @can('p.member.delete')
-                                                <a type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                            @endcan
+                                            <a type="button" class="btn btn-info" href="{{ route('portal.role.show', $role->id) }}"><i class="fas fa-eye"></i></a>
+                                            <a type="button" class="btn btn-warning" href="{{ route('portal.role.edit', $role->id) }}"><i class="fas fa-edit"></i></a>
+                                            <a type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -74,8 +67,10 @@
             </div>
         </div>
     </div>
-@endsection
 
+
+
+@endsection
 
 @push('script')
     <script>

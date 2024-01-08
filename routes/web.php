@@ -3,6 +3,7 @@
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PortalController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,4 +38,7 @@ Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => 'auth'], 
 
     // Portal > Permissions
     Route::resource('permission', PermissionController::class)->except(['create', 'store', 'show' ,'destroy']);
+
+    // Portal > Roles
+    Route::resource('role', RoleController::class);
 });

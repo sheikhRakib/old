@@ -19,7 +19,7 @@ class DefaultUsersSeeder extends Seeder
             'email'     => 'act@nmt.edu',
             'password'  => Hash::make('123456'),
         ]);
-        $system->assignRole("super-admin");
+        $system->assignRole("system");
 
         $rakib = User::create([
             'name'      => 'Rakibul Islam',
