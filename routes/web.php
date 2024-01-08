@@ -36,5 +36,5 @@ Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => 'auth'], 
     Route::resource('invitation', InvitationController::class)->except(['edit', 'update', 'show']);
 
     // Portal > Permissions
-    Route::resource('permission', PermissionController::class)->except(['create', 'store', 'destroy']);
+    Route::resource('permission', PermissionController::class)->except(['create', 'store', 'show' ,'destroy']);
 });
