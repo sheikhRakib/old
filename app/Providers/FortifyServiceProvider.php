@@ -6,6 +6,7 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Models\Invitation;
 use App\Models\InvitationToken;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class FortifyServiceProvider extends ServiceProvider
         {
             if(!$request['token']) abort(401);
 
-            $data['invitation'] = InvitationToken::where('token', $request['token'])->first();
+            $data['invitation'] = Invitation::where('token', $request['token'])->first();
 
             if(!$data['invitation']) abort(401);
 

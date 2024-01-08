@@ -2,7 +2,7 @@
 
 namespace App\Actions\Fortify;
 
-use App\Models\InvitationToken;
+use App\Models\Invitation;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +28,7 @@ class CreateNewUser implements CreatesNewUsers
             ['name' => 'Full Name', 'email' => 'Email Address', 'password' => 'Password'],
         )->validate();
 
-        $invitee = InvitationToken::where('email', $input['email'])->first();
+        $invitee = Invitation::where('email', $input['email'])->first();
 
         if (!$invitee) {
             return redirect()

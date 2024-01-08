@@ -3,7 +3,7 @@
 @section('title', 'Permissions')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('portal.permissions') }}
+    {{ Breadcrumbs::render('portal.permission') }}
 @endsection
 
 @push('css')
@@ -44,7 +44,7 @@
                                     <td>{{ $permission->description ?? 'No Details Found' }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{{ route('portal.permissions.edit', $permission->id) }}" type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('portal.permission.edit', $permission->id) }}" type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                                         </div>
                                     </td>
                                 </tr>

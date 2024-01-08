@@ -3,7 +3,7 @@
 @section('title', 'Edit Permission')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('portal.permissions.edit', $permission) }}
+    {{ Breadcrumbs::render('portal.permission.edit', $permission) }}
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
                     <h3 class="card-title">{{ $permission->name }}</h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('portal.permissions.update', $permission) }}" method="POST">
+                    <form action="{{ route('portal.permission.update', $permission) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">

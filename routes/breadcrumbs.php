@@ -8,6 +8,7 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 //  with `$trail`. This is nice for IDE type checking and completion.
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 // Dashboard
 Breadcrumbs::for('portal', function (BreadcrumbTrail $trail) {
@@ -33,13 +34,35 @@ Breadcrumbs::for('portal.invitation.create', function (BreadcrumbTrail $trail) {
 });
 
 // Dashboard > Permissions
-Breadcrumbs::for('portal.permissions', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('portal.permission', function (BreadcrumbTrail $trail) {
     $trail->parent('portal');
-    $trail->push('Permissions', route('portal.permissions.index'));
+    $trail->push('Permissions', route('portal.permission.index'));
 });
 
 // Dashboard > Permissions > [Permission]
-Breadcrumbs::for('portal.permissions.edit', function (BreadcrumbTrail $trail, Permission $permission) {
-    $trail->parent('portal.permissions');
-    $trail->push($permission->name, route('portal.permissions.edit', $permission));
+Breadcrumbs::for('portal.permission.edit', function (BreadcrumbTrail $trail, Permission $permission) {
+    $trail->parent('portal.permission');
+    $trail->push($permission->name, route('portal.permission.edit', $permission));
 });
+
+// Dashboard > Roles
+Breadcrumbs::for('portal.role', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal');
+    $trail->push('Roles', route('portal.role.index'));
+});
+// Dashboard > Roles > Create
+Breadcrumbs::for('portal.role.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal.role');
+    $trail->push('Create', route('portal.role.create'));
+});
+// Dashboard > Roles > [Role]
+Breadcrumbs::for('portal.role.show', function (BreadcrumbTrail $trail, Role $role) {
+    $trail->parent('portal.role');
+    $trail->push($role->name, route('portal.role.show', $role));
+});
+// Dashboard > Roles > [Role] > Edit
+Breadcrumbs::for('portal.role.edit', function (BreadcrumbTrail $trail, Role $role) {
+    $trail->parent('portal.role.show', $role);
+    $trail->push('Edit', route('portal.role.edit', $role));
+});
+

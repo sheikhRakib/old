@@ -21,7 +21,8 @@
 
                 {{-- Permission Management --}}
                 <x-portal.sidebar.header label="PERMISSION MANAGEMENT" />
-                <x-portal.sidebar.item label="Permissions" route="portal.permissions.index" icon="shield-alt" />
+                <x-portal.sidebar.item label="Permissions" route="portal.permission.index" icon="shield-alt" />
+                <x-portal.sidebar.item label="Roles" route="portal.role.index" icon="user-shield" />
             </ul>
 
         </nav>
