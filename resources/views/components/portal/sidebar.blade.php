@@ -12,14 +12,18 @@
                 <x-portal.sidebar.item label="Dashboard" route="portal.index" icon="tachometer-alt" />
 
                 <x-portal.sidebar.header label="EMPLOYEE MANAGEMENT" />
-                    <x-portal.sidebar.multi-item label="Employees" route="portal.employee" icon="users">
-                        <x-portal.sidebar.item label="Index" route="portal.employee.index" icon="address-card" />
-                        @can('p.member.invite')
-                            <x-portal.sidebar.item label="Invite" route="portal.employee.invite.view" icon="user-plus" />
-                            @endcan
-                        <x-portal.sidebar.item label="Invitee List" route="portal.employee.invite.list" icon="user-clock" />
-                    </x-portal.sidebar.multi-item>
+                <x-portal.sidebar.multi-item label="Employees" route="portal.employee" icon="users">
+                    <x-portal.sidebar.item label="Index" route="portal.employee.index" icon="address-card" />
+                    @can('p.member.invite')
+                        <x-portal.sidebar.item label="Invite" route="portal.employee.invite.view" icon="user-plus" />
+                    @endcan
+                    <x-portal.sidebar.item label="Invitee List" route="portal.employee.invite.list" icon="user-clock" />
+                </x-portal.sidebar.multi-item>
+
+                <x-portal.sidebar.header label="PERMISSION MANAGEMENT" />
+                <x-portal.sidebar.item label="Permissions" route="portal.permissions.index" icon="shield-alt" />
             </ul>
+
         </nav>
     </div>
     <div class="sidebar-custom">

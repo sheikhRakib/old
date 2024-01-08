@@ -7,7 +7,7 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 // This import is also not required, and you could replace `BreadcrumbTrail $trail`
 //  with `$trail`. This is nice for IDE type checking and completion.
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
-
+use Spatie\Permission\Models\Permission;
 
 // Dashboard
 Breadcrumbs::for('portal', function (BreadcrumbTrail $trail) {
@@ -20,6 +20,7 @@ Breadcrumbs::for('portal.employee', function (BreadcrumbTrail $trail) {
     $trail->push('Employee', route('portal.employee.index'));
 });
 
+// Dashboard > Employee > Invite List
 Breadcrumbs::for('portal.employee.invite.list', function (BreadcrumbTrail $trail) {
     $trail->parent('portal.employee');
     $trail->push('Invitee List', route('portal.employee.invite.list'));
@@ -31,10 +32,14 @@ Breadcrumbs::for('portal.employee.invite', function (BreadcrumbTrail $trail) {
     $trail->push('Invite', route('portal.employee.invite.view'));
 });
 
+// Dashboard > Permissions
+Breadcrumbs::for('portal.permissions', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal');
+    $trail->push('Permissions', route('portal.permissions.index'));
+});
 
-
-// // Home > Blog > [Category]
-// Breadcrumbs::for('category', function (BreadcrumbTrail $trail, $category) {
-//     $trail->parent('blog');
-//     $trail->push($category->title, route('category', $category));
-// });
+// Dashboard > Permissions > [Permission]
+Breadcrumbs::for('portal.permissions.edit', function (BreadcrumbTrail $trail, Permission $permission) {
+    $trail->parent('portal.permissions');
+    $trail->push($permission->name, route('portal.permissions.edit', $permission));
+});

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InvitationRequest;
 use App\Models\InvitationToken;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class EmployeeController extends Controller
@@ -46,7 +47,8 @@ class EmployeeController extends Controller
         $invite->token = Str::uuid();
         $invite->save();
 
-        return view('portal.employee.invite');
+        Session::flash('success', 'Invitation Sent');
+        return redirect()->route('portal.employee.invite.list');
     }
 
     public function list()

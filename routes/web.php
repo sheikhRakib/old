@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PortalController;
+use App\Http\Controllers\RoleAndPermissionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,10 +33,17 @@ Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => 'auth'], 
         Route::get('/', [EmployeeController::class, 'index'])->name('index');
 
         // Portal>Employee>Invite
-        Route::group(['prefix'=>'invite', 'as'=>'invite.'], function() {
+        Route::group(['prefix' => 'invite', 'as' => 'invite.'], function () {
             Route::get('/', [EmployeeController::class, 'invite'])->name('view');
             Route::post('/', [EmployeeController::class, 'sendInvitation'])->name('send');
             Route::get('list', [EmployeeController::class, 'list'])->name('list');
         });
+    });
+
+    // Portal > Roles&Permissions
+    Route::group(['prefix' => 'permissions', 'as' => 'permissions.'], function () {
+        Route::get('/', [PermissionController::class, 'index'])->name('index');
+        Route::get('{permission}', [PermissionController::class, 'edit'])->name('edit');
+        Route::put('{permission}', [PermissionController::class, 'update'])->name('update');
     });
 });
