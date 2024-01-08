@@ -1,7 +1,7 @@
 <!-- {{ $label }} -->
 <div class="input-group mb-3">
     <input type="{{ $type }}" name="{{ $name }}" id="{{ $id }}" class="form-control @error($name) is-invalid @enderror"
-        value="{{ old($name) }}" placeholder="{{ $placeholder }}">
+        value="{{ old($name) ?? $value  }}" placeholder="{{ $placeholder }}" {{ $disabled }}>
     <div class="input-group-append">
         <div class="input-group-text">
             <i class="fas {{ $icon }}"></i>
