@@ -17,7 +17,7 @@ class Button extends Component
         $this->type = $type;
     }
 
-public function render(): View|Closure|string
+    public function render(): View|Closure|string
     {
         return view('components.form.button');
     }

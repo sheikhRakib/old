@@ -11,10 +11,10 @@ class TextArea extends Component
     public string $name;
     public string $label;
     public string $id;
-    public string $value;
     public string $placeholder;
     public string $required;
     public string $readonly;
+    public $value;
 
     public function __construct($label, $name, $id = '', $value = '', $placeholder = '', $required = '', $readonly = '')
     {

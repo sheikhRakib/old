@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <form action="{{ route('portal.role.store') }}" method="POST">
                         @csrf
-                        <x-form.label.input label="Name" name="name" placeholder="i.e. Director" required='required' />
+                        <x-form.label.input label="Name" name="name" placeholder="i.e. director" required="required" hint="Note: You won't be able to change it later" />
                         <x-form.label.input label="Display Name" name="displayname" placeholder="i.e. Director of ACT"  />
                         <x-form.label.text-area label="Description" name="description" placeholder="Enter..." />
 

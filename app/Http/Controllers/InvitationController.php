@@ -5,11 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InvitationRequest;
 use App\Models\Invitation;
 use App\Models\User;
+use App\Services\InvitationService;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
 
 class InvitationController extends Controller
 {
+    protected InvitationService $invitationService;
+
+    public function __construct(InvitationService $invitationService)
+    {
+        $this->invitationService = $invitationService;
+    }
+
     public function index()
     {
         $data['invitations'] = Invitation::all();
@@ -30,7 +37,7 @@ class InvitationController extends Controller
         if ($user) {
             return redirect()
                 ->back()
-                ->withErrors(['email' => 'User already exists.'])
+                ->withErrors(['email' => 'Member already exists.'])
                 ->withInput($request->only('email'));
         }
 
@@ -42,10 +49,7 @@ class InvitationController extends Controller
                 ->withInput($request->only('email'));
         }
 
-        $invitation = new Invitation();
-        $invitation->email = $email;
-        $invitation->token = Str::uuid();
-        $invitation->save();
+        $this->invitationService->storeInvitation(new Invitation(), $email);
 
         Session::flash('success', 'Invitation Sent');
         return redirect()->route('portal.invitation.index');
@@ -53,7 +57,7 @@ class InvitationController extends Controller
 
     public function destroy(Invitation $invitation)
     {
-        $invitation->delete();
+        $this->invitationService->deleteInvitation($invitation);
 
         Session::flash('success', 'Deleted');
         return redirect()->back();

@@ -8,6 +8,7 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 //  with `$trail`. This is nice for IDE type checking and completion.
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 // Dashboard
 Breadcrumbs::for('portal', function (BreadcrumbTrail $trail) {
@@ -49,11 +50,19 @@ Breadcrumbs::for('portal.role', function (BreadcrumbTrail $trail) {
     $trail->parent('portal');
     $trail->push('Roles', route('portal.role.index'));
 });
-
 // Dashboard > Roles > Create
 Breadcrumbs::for('portal.role.create', function (BreadcrumbTrail $trail) {
     $trail->parent('portal.role');
     $trail->push('Create', route('portal.role.create'));
 });
-
+// Dashboard > Roles > [Role]
+Breadcrumbs::for('portal.role.show', function (BreadcrumbTrail $trail, Role $role) {
+    $trail->parent('portal.role');
+    $trail->push($role->name, route('portal.role.show', $role));
+});
+// Dashboard > Roles > [Role] > Edit
+Breadcrumbs::for('portal.role.edit', function (BreadcrumbTrail $trail, Role $role) {
+    $trail->parent('portal.role.show', $role);
+    $trail->push('Edit', route('portal.role.edit', $role));
+});
 
