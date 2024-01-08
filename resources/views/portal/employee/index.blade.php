@@ -41,8 +41,8 @@
                                 <th>Email</th>
                                 <th>900#</th>
                                 <th>Designation</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th style="width: 10%">Status</th>
+                                <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>

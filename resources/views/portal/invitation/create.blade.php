@@ -3,7 +3,7 @@
 @section('title', 'Invite to Join')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('portal.employee.invite') }}
+    {{ Breadcrumbs::render('portal.invitation.create') }}
 @endsection
 
 
@@ -15,7 +15,7 @@
                     <h3 class="card-title">Invitation Form</h3>
                 </div>
 
-                <form action="{{ route('portal.employee.invite.send') }}" method="POST">
+                <form action="{{ route('portal.invitation.store') }}" method="POST">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">

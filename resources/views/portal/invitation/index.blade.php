@@ -3,7 +3,7 @@
 @section('title', 'Invitees')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('portal.employee.invite.list') }}
+    {{ Breadcrumbs::render('portal.invitation') }}
 @endsection
 
 @push('css')
@@ -27,39 +27,39 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <h3 class="card-title">Member List</h3>
-                        @can('p.member.invite')
-                            <a href="{{ route('portal.employee.invite.send') }}" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i> Invite member</a>
-                        @endcan
+                        <h3 class="card-title">Invitation List</h3>
+                        <a href="{{ route('portal.invitation.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i> Invite member</a>
                     </div>
                 </div>
                 <div class="card-body">
                     <table id="memberslist" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Email</th>
                                 <th>Invitation Date</th>
+                                <th>Email</th>
+                                <th>Token</th>
                                 <th style="width: 10%">Status</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($users as $user)
+                            @forelse ($invitations as $invitation)
                                 <tr>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->updated_at }}</td>
-                                    <td><small class="badge badge-success">active</small></td>
+                                    <td>{{ $invitation->created_at }}</td>
+                                    <td>{{ $invitation->email }}</td>
+                                    <td>{{ $invitation->token }}</td>
+                                    <td><small class="badge badge-warning">Pending</small></td>
                                     <td>
                                         <div class="btn-group">
-                                            @can('p.member.view')
-                                                <a type="button" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                            @endcan
-                                            @can('p.member.edit')
-                                                <a type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                            @endcan
-                                            @can('p.member.delete')
-                                                <a type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                            @endcan
+                                            <a type="button" class="btn btn-info"><i class="fas fa-share-square"></i></a>
+                                            <a class="btn btn-danger" href="#" onclick="if(confirm('Are you sure you want to delete this invitation?')) { event.preventDefault(); document.getElementById('invitation_{{ $invitation->id }}').submit(); } else { event.preventDefault(); }">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+
+                                            <form id="invitation_{{ $invitation->id }}" action="{{ Route('portal.invitation.destroy', $invitation->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
