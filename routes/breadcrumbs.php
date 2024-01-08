@@ -20,16 +20,16 @@ Breadcrumbs::for('portal.employee', function (BreadcrumbTrail $trail) {
     $trail->push('Employee', route('portal.employee.index'));
 });
 
-// Dashboard > Employee > Invite List
-Breadcrumbs::for('portal.employee.invite.list', function (BreadcrumbTrail $trail) {
-    $trail->parent('portal.employee');
-    $trail->push('Invitee List', route('portal.employee.invite.list'));
+// Dashboard > Invitation
+Breadcrumbs::for('portal.invitation', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal');
+    $trail->push('Invitee', route('portal.invitation.index'));
 });
 
-// Dashboard > Employee > Invite > View
-Breadcrumbs::for('portal.employee.invite', function (BreadcrumbTrail $trail) {
-    $trail->parent('portal.employee');
-    $trail->push('Invite', route('portal.employee.invite.view'));
+// Dashboard > Invite > Create
+Breadcrumbs::for('portal.invitation.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal.invitation');
+    $trail->push('Invite', route('portal.invitation.create'));
 });
 
 // Dashboard > Permissions

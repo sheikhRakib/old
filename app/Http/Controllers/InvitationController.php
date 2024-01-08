@@ -3,30 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\InvitationRequest;
-use App\Models\InvitationToken;
+use App\Models\Invitation;
 use App\Models\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
-class EmployeeController extends Controller
+class InvitationController extends Controller
 {
     public function index()
     {
-        $data['users'] = User::all();
-        return view('portal.employee.index', $data);
+        $data['invitations'] = Invitation::all();
+
+        return view('portal.invitation.index', $data);
     }
 
-    public function invite()
+    public function create()
     {
-        return view('portal.employee.invite');
+        return view('portal.invitation.create');
     }
 
-    public function sendInvitation(InvitationRequest $request)
+    public function store(InvitationRequest $request)
     {
         $email = $request['email'];
 
         $user = User::where('email', $email)->first();
-
         if ($user) {
             return redirect()
                 ->back()
@@ -34,7 +34,7 @@ class EmployeeController extends Controller
                 ->withInput($request->only('email'));
         }
 
-        $invitee = InvitationToken::where('email', $email)->first();
+        $invitee = Invitation::where('email', $email)->first();
         if ($invitee) {
             return redirect()
                 ->back()
@@ -42,19 +42,20 @@ class EmployeeController extends Controller
                 ->withInput($request->only('email'));
         }
 
-        $invite = new InvitationToken();
-        $invite->email = $email;
-        $invite->token = Str::uuid();
-        $invite->save();
+        $invitation = new Invitation();
+        $invitation->email = $email;
+        $invitation->token = Str::uuid();
+        $invitation->save();
 
         Session::flash('success', 'Invitation Sent');
-        return redirect()->route('portal.employee.invite.list');
+        return redirect()->route('portal.invitation.index');
     }
 
-    public function list()
+    public function destroy(Invitation $invitation)
     {
-        $data['users'] = InvitationToken::all();
+        $invitation->delete();
 
-        return view('portal.employee.invite-list', $data);
+        Session::flash('success', 'Deleted');
+        return redirect()->back();
     }
 }

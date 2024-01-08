@@ -11,15 +11,15 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <x-portal.sidebar.item label="Dashboard" route="portal.index" icon="tachometer-alt" />
 
+                {{-- Employee Management --}}
                 <x-portal.sidebar.header label="EMPLOYEE MANAGEMENT" />
                 <x-portal.sidebar.multi-item label="Employees" route="portal.employee" icon="users">
                     <x-portal.sidebar.item label="Index" route="portal.employee.index" icon="address-card" />
-                    @can('p.member.invite')
-                        <x-portal.sidebar.item label="Invite" route="portal.employee.invite.view" icon="user-plus" />
-                    @endcan
-                    <x-portal.sidebar.item label="Invitee List" route="portal.employee.invite.list" icon="user-clock" />
                 </x-portal.sidebar.multi-item>
 
+                <x-portal.sidebar.item label="Invite Member" route="portal.invitation.index" icon="user-plus" />
+
+                {{-- Permission Management --}}
                 <x-portal.sidebar.header label="PERMISSION MANAGEMENT" />
                 <x-portal.sidebar.item label="Permissions" route="portal.permissions.index" icon="shield-alt" />
             </ul>
