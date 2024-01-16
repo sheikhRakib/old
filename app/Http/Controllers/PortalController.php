@@ -8,4 +8,9 @@ class PortalController extends Controller
     {
         return view('portal.index');
     }
+
+    public function userprofile()
+    {
+        return view('portal.userprofile');
+    }
 }

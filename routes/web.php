@@ -28,6 +28,8 @@ Route::redirect('home', 'portal')->name('home');
 Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => 'auth'], function () {
     Route::get('/', [PortalController::class, 'index'])->name('index');
 
+    Route::get('profile', [PortalController::class, 'userprofile'])->name('userprofile');
+
     // Portal>Employee
     Route::group(['prefix' => 'employee', 'as' => 'employee.'], function () {
         Route::get('/', [UserController::class, 'index'])->name('index');

@@ -15,6 +15,12 @@ Breadcrumbs::for('portal', function (BreadcrumbTrail $trail) {
     $trail->push('Dashboard', route('portal.index'));
 });
 
+// Dashboard > Personal Information
+Breadcrumbs::for('portal.profile', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal');
+    $trail->push('Profile', route('portal.userprofile'));
+});
+
 // Dashboard > Employee
 Breadcrumbs::for('portal.employee', function (BreadcrumbTrail $trail) {
     $trail->parent('portal');
