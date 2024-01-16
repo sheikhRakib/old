@@ -18,18 +18,8 @@
                 <form action="{{ route('portal.invitation.store') }}" method="POST">
                     @csrf
                     <div class="card-body">
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" name="email" id="email"
-                                class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"
-                                placeholder="someone@example.com">
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Invitation</button>
+                        <x-form.input.with-label label="Email Address" name="email" placeholder="someone@example.com" />
+                        <x-form.button label="Send Invitation" class="btn-primary" />
                     </div>
                 </form>
             </div>

@@ -28,11 +28,9 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <h3 class="card-title">Member List</h3>
-                        @can('perm.member.invite')
                             <a href="{{ route('portal.employee.invite') }}" class="btn btn-sm btn-primary">
                                 <i class="fas fa-user-plus"></i> Invite member
                             </a>
-                        @endcan
                     </div>
                 </div>
                 <div class="card-body">
@@ -57,15 +55,9 @@
                                     <td><small class="badge badge-success">active</small></td>
                                     <td>
                                         <div class="btn-group">
-                                            @can('p.member.view')
                                                 <a type="button" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                            @endcan
-                                            @can('p.member.edit')
                                                 <a type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                            @endcan
-                                            @can('p.member.delete')
                                                 <a type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                            @endcan
                                         </div>
                                     </td>
                                 </tr>

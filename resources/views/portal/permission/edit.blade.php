@@ -17,14 +17,9 @@
                     <form action="{{ route('portal.permission.update', $permission) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <div class="form-group">
-                            <label>Display Name</label>
-                            <input type="text" name="displayname" class="form-control" placeholder="Enter ..." value="{{ $permission->displayname }}">
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea name="description" class="form-control" rows="5" placeholder="Enter ...">{{ $permission->description }}</textarea>
-                        </div>
+                        <x-form.input.with-label name="displayname" label="Display Name" placeholder="Permission Name" :value="$permission->displayname" />
+                        <x-form.textarea.with-label name="description" label="Description" :value="$permission->description" />
+
                         <button type="submit" class="btn btn-primary">Update</button>
                         <button type="cancel" class="btn btn-secondary">Cancel</button>
                     </form>

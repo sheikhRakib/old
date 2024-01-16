@@ -13,9 +13,9 @@
                 <div class="card-body">
                     <form action="{{ route('portal.role.store') }}" method="POST">
                         @csrf
-                        <x-form.label.input label="Name" name="name" placeholder="i.e. director" required="required" hint="Note: You won't be able to change it later" />
-                        <x-form.label.input label="Display Name" name="displayname" placeholder="i.e. Director of ACT"  />
-                        <x-form.label.text-area label="Description" name="description" placeholder="Enter..." />
+                        <x-form.input.with-label label="Name" name="name" placeholder="i.e. director" required="required" hint="Note: You won't be able to change it later" />
+                        <x-form.input.with-label label="Display Name" name="displayname" placeholder="i.e. Director of ACT"  />
+                        <x-form.textarea.with-label label="Description" name="description" placeholder="Enter..." />
 
                         <x-form.button label="Create" class="btn-primary px-3"/>
                         <x-form.button label="Cancel" type="cancel" class="btn-secondary px-3"/>

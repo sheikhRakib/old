@@ -3,6 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('breadcrumbs')
+    {{ Breadcrumbs::render('portal') }}
 @endsection
 
 @push('css')
