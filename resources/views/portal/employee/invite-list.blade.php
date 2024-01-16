@@ -29,7 +29,9 @@
                     <div class="d-flex justify-content-between">
                         <h3 class="card-title">Member List</h3>
                         @can('perm.member.invite')
-                            <a href="{{ route('portal.employee.invite') }}" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i> Invite member</a>
+                            <a href="{{ route('portal.employee.invite') }}" class="btn btn-sm btn-primary">
+                                <i class="fas fa-user-plus"></i> Invite member
+                            </a>
                         @endcan
                     </div>
                 </div>

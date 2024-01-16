@@ -7,10 +7,12 @@
         <form action="{{ route('register') }}" method="POST">
             @csrf
 
-            <x-auth.input name='name' label='Full Name' icon='fa-user'/>
-            <x-auth.input name='email' label='Email Address' icon='fa-envelope' type='email' value="{{ $invitation->email }}" disabled='readonly'/>
-            <x-auth.input name='password' label='Password' icon='fa-lock' type='password'/>
-            <x-auth.input name='password_confirmation' id='confirm_password' label='Retype Password' icon='fa-lock' type='password'/>
+            <x-auth.input name='name' label='Full Name' icon='fa-user' />
+            <x-auth.input name='email' label='Email Address' icon='fa-envelope' type='email'
+                value="{{ $invitation->email }}" disabled='readonly' />
+            <x-auth.input name='password' label='Password' icon='fa-lock' type='password' />
+            <x-auth.input name='password_confirmation' id='confirm_password' label='Retype Password' icon='fa-lock'
+                type='password' />
 
             <div class="row">
                 <div class="col-8"></div>

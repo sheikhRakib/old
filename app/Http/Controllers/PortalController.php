@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class PortalController extends Controller
 {
     public function index()
@@ -14,5 +12,10 @@ class PortalController extends Controller
     public function inventory()
     {
         return view('portal.index');
+    }
+
+    public function userprofile()
+    {
+        return view('portal.userprofile');
     }
 }
