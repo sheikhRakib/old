@@ -18,10 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('index');
-
+Route::view('/', 'welcome')->name('index');
 Route::redirect('home', 'portal')->name('home');
 
 // Portal
@@ -36,10 +33,10 @@ Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => 'auth'], 
     });
 
     // Portal > Invite
-    Route::resource('invitation', InvitationController::class)->except(['edit', 'update', 'show']);
+    Route::resource('invitation', InvitationController::class)->only(['index', 'create', 'store', 'destroy']);
 
     // Portal > Permissions
-    Route::resource('permission', PermissionController::class)->except(['create', 'store', 'show' ,'destroy']);
+    Route::resource('permission', PermissionController::class)->only(['index', 'edit', 'update']);
 
     // Portal > Roles
     Route::resource('role', RoleController::class);

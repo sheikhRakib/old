@@ -17,7 +17,6 @@
                 <x-portal.sidebar.header label="EMPLOYEE MANAGEMENT" />
                 <x-portal.sidebar.multi-item label="Employees" route="portal.employee" icon="users">
                     <x-portal.sidebar.item label="Index" route="portal.employee.index" icon="address-card" />
-                    <x-portal.sidebar.item label="Invitee List" route="portal.employee.invite.list" icon="user-clock" />
                 </x-portal.sidebar.multi-item>
 
                 <x-portal.sidebar.item label="Invite Member" route="portal.invitation.index" icon="user-plus" />
