@@ -40,8 +40,8 @@
                             @forelse ($permissions as $permission)
                                 <tr>
                                     <td>{{ $permission->name }}</td>
-                                    <td>{{ $permission->displayname ?? 'No Name Found' }}</td>
-                                    <td>{{ $permission->description ?? 'No Details Found' }}</td>
+                                    <td>{{ $permission->displayname ?? '-' }}</td>
+                                    <td>{{ $permission->description ?? '-' }}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a href="{{ route('portal.permission.edit', $permission->id) }}" type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>

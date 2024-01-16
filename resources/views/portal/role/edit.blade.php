@@ -14,8 +14,8 @@
                     <form action="{{ route('portal.role.update', $role) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <x-form.label.input label="Display Name" name="displayname" placeholder="i.e. Director of ACT" :value="$role->displayname" />
-                        <x-form.label.text-area label="Description" name="description" placeholder="Enter..." :value="$role->description" />
+                        <x-form.input.with-label label="Display Name" name="displayname" placeholder="i.e. Director of ACT" :value="$role->displayname" />
+                        <x-form.textarea.with-label label="Description" name="description" placeholder="Enter..." :value="$role->description" />
 
                         <x-form.button label="Update" class="btn-primary px-3" />
                         <x-form.button label="Cancel" type="cancel" class="btn-secondary px-3" />

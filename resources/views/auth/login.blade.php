@@ -6,8 +6,8 @@
 
         <form action="{{ route('login') }}" method="POST">
             @csrf
-            <x-form.icon.input name='email' label='Email Address' icon='fa-envelope' type='email' />
-            <x-form.icon.input name='password' label='Password' icon='fa-lock' type='password' />
+            <x-form.input.with-icon name='email' label='Email Address' icon='fa-envelope' type='email' />
+            <x-form.input.with-icon name='password' label='Password' icon='fa-lock' type='password' />
 
             <div class="row">
                 <div class="col-8 mb-0 pt-3">
