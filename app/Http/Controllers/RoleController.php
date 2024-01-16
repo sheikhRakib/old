@@ -2,21 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RoleCreateRequest;
-use App\Http\Requests\RoleUpdateRequest;
+use App\Http\Requests\StoreRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
 use App\Services\RoleService;
-use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
-    protected RoleService $roleService;
-
-    public function __construct(RoleService $roleService)
-    {
-        $this->roleService = $roleService;
-    }
-
     public function index()
     {
         $data['roles'] = Role::all();
@@ -29,15 +21,15 @@ class RoleController extends Controller
         return view('portal.role.create');
     }
 
-    public function store(RoleCreateRequest $request)
+    public function store(StoreRoleRequest $request)
     {
-        $input['name'] = $request['name'];
-        $input['displayname'] = $request['displayname'];
-        $input['description'] = $request['description'];
-        $this->roleService->storeRole(new Role(), $input);
+        $input = [
+            'name' => $request['name'],
+            'displayname' => $request['displayname'],
+            'description' => $request['description'],
+        ];
 
-        Session::flash('success', 'Role Created');
-        return redirect()->route('portal.role.index');
+        return RoleService::store($input);
     }
 
     public function show(Role $role)
@@ -50,28 +42,18 @@ class RoleController extends Controller
         return view('portal.role.edit', compact('role'));
     }
 
-    public function update(RoleUpdateRequest $request, Role $role)
+    public function update(UpdateRoleRequest $request, Role $role)
     {
-        $input['displayname'] = $request['displayname'];
-        $input['description'] = $request['description'];
-        $this->roleService->updateRole($role, $input);
+        $input = [
+            'displayname' => $request['displayname'],
+            'description' => $request['description'],
+        ];
 
-        Session::flash('success', 'Role Updated');
-        return redirect()->route('portal.role.show', $role);
+        return RoleService::update($role, $input);
     }
 
     public function destroy(Role $role)
     {
-        if($role->users()->count())
-        {
-            Session::flash('error', 'One or more members have this role.');
-            return redirect()->back();
-        }
-
-        $this->roleService->deleteRole($role);
-
-        Session::flash('success', 'Role Deleted');
-        return redirect()->back();
-
+        return RoleService::delete($role);
     }
 }
