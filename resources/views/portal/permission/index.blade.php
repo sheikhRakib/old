@@ -1,9 +1,9 @@
 @extends('portal.app')
 
-@section('title', 'Invitees')
+@section('title', 'Permissions')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('portal.employee.invite.list') }}
+    {{ Breadcrumbs::render('portal.permission') }}
 @endsection
 
 @push('css')
@@ -24,52 +24,33 @@
 @section('content')
     <div class="container-fluid">
         <div class="col-md-12">
+
             <div class="card">
-                <div class="card-header">
-                    <div class="d-flex justify-content-between">
-                        <h3 class="card-title">Member List</h3>
-                        @can('perm.member.invite')
-                            <a href="{{ route('portal.employee.invite') }}" class="btn btn-sm btn-primary">
-                                <i class="fas fa-user-plus"></i> Invite member
-                            </a>
-                        @endcan
-                    </div>
-                </div>
                 <div class="card-body">
                     <table id="memberslist" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Email</th>
-                                <th>Invitation Date</th>
-                                <th>Token</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>Permission</th>
+                                <th>Display Name</th>
+                                <th>Description</th>
+                                <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($users as $user)
+                            @forelse ($permissions as $permission)
                                 <tr>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->updated_at }}</td>
-                                    <td>{{ $user->token }}</td>
-                                    <td><small class="badge badge-success">active</small></td>
+                                    <td>{{ $permission->name }}</td>
+                                    <td>{{ $permission->displayname ?? 'No Name Found' }}</td>
+                                    <td>{{ $permission->description ?? 'No Details Found' }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            @can('p.member.view')
-                                                <a type="button" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                            @endcan
-                                            @can('p.member.edit')
-                                                <a type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                            @endcan
-                                            @can('p.member.delete')
-                                                <a type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                            @endcan
+                                            <a href="{{ route('portal.permission.edit', $permission->id) }}" type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                                         </div>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5">No Data Found</td>
+                                    <td colspan="4">No Data Found</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -78,8 +59,10 @@
             </div>
         </div>
     </div>
-@endsection
 
+
+
+@endsection
 
 @push('script')
     <script>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Auth;
+namespace App\View\Components\Form\Icon;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -21,16 +21,16 @@ class Input extends Component
     {
         $this->name = $name;
         $this->label = $label;
-        $this->id = $id ? $id : $name;
+        $this->id = $id ?: $name;
         $this->type = $type;
         $this->icon = $icon;
-        $this->placeholder = $placeholder ? $placeholder : $label;
+        $this->placeholder = $placeholder ?: $label;
         $this->value = $value;
         $this->disabled = $disabled;
     }
 
     public function render(): View|Closure|string
     {
-        return view('components.auth.input');
+        return view('components.form.icon.input');
     }
 }

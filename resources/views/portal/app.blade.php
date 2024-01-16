@@ -36,6 +36,8 @@
             </div>
 
             <div class="content">
+                @include('partials.alert')
+
                 @yield('content')
             </div>
         </div>

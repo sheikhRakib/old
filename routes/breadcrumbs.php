@@ -7,6 +7,8 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 // This import is also not required, and you could replace `BreadcrumbTrail $trail`
 //  with `$trail`. This is nice for IDE type checking and completion.
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 // Dashboard
 Breadcrumbs::for('portal', function (BreadcrumbTrail $trail) {
@@ -25,19 +27,48 @@ Breadcrumbs::for('portal.employee', function (BreadcrumbTrail $trail) {
     $trail->push('Employee', route('portal.employee.index'));
 });
 
-Breadcrumbs::for('portal.employee.invite.list', function (BreadcrumbTrail $trail) {
-    $trail->parent('portal.employee');
-    $trail->push('Invitee List', route('portal.employee.invite.list'));
+// Dashboard > Invitation
+Breadcrumbs::for('portal.invitation', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal');
+    $trail->push('Invitee', route('portal.invitation.index'));
 });
 
-// Dashboard > Employee > Invite > View
-Breadcrumbs::for('portal.employee.invite', function (BreadcrumbTrail $trail) {
-    $trail->parent('portal.employee');
-    $trail->push('Invite', route('portal.employee.invite.view'));
+// Dashboard > Invite > Create
+Breadcrumbs::for('portal.invitation.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal.invitation');
+    $trail->push('Invite', route('portal.invitation.create'));
 });
 
-// // Home > Blog > [Category]
-// Breadcrumbs::for('category', function (BreadcrumbTrail $trail, $category) {
-//     $trail->parent('blog');
-//     $trail->push($category->title, route('category', $category));
-// });
+// Dashboard > Permissions
+Breadcrumbs::for('portal.permission', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal');
+    $trail->push('Permissions', route('portal.permission.index'));
+});
+
+// Dashboard > Permissions > [Permission]
+Breadcrumbs::for('portal.permission.edit', function (BreadcrumbTrail $trail, Permission $permission) {
+    $trail->parent('portal.permission');
+    $trail->push($permission->name, route('portal.permission.edit', $permission));
+});
+
+// Dashboard > Roles
+Breadcrumbs::for('portal.role', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal');
+    $trail->push('Roles', route('portal.role.index'));
+});
+// Dashboard > Roles > Create
+Breadcrumbs::for('portal.role.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('portal.role');
+    $trail->push('Create', route('portal.role.create'));
+});
+// Dashboard > Roles > [Role]
+Breadcrumbs::for('portal.role.show', function (BreadcrumbTrail $trail, Role $role) {
+    $trail->parent('portal.role');
+    $trail->push($role->name, route('portal.role.show', $role));
+});
+// Dashboard > Roles > [Role] > Edit
+Breadcrumbs::for('portal.role.edit', function (BreadcrumbTrail $trail, Role $role) {
+    $trail->parent('portal.role.show', $role);
+    $trail->push('Edit', route('portal.role.edit', $role));
+});
+
