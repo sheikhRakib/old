@@ -3,7 +3,7 @@
 @section('title', 'Buildings')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('portal.role.create') }}
+    {{ Breadcrumbs::render('portal.building.create') }}
 @endsection
 
 @section('content')
