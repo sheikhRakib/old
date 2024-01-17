@@ -52,7 +52,7 @@
                                     <td>{{ $user->email }}</td>
                                     <td>900123456</td>
                                     <td>Member</td>
-                                    <td><small class="badge badge-success">active</small></td>
+                                    <td><small class="badge @if($user->active) badge-success @else badge-danger @endif">@if($user->active) Active @else Inactive @endif</small></td>
                                     <td>
                                         <div class="btn-group">
                                                 <a type="button" class="btn btn-info"><i class="fas fa-eye"></i></a>

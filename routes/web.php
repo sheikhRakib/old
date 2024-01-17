@@ -23,7 +23,7 @@ Route::view('/', 'welcome')->name('index');
 Route::redirect('home', 'portal')->name('home');
 
 // Portal
-Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['auth', 'isActive']], function () {
     Route::get('/', [PortalController::class, 'index'])->name('index');
 
     Route::get('profile', [PortalController::class, 'userprofile'])->name('userprofile');
