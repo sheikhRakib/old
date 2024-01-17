@@ -1,9 +1,9 @@
 @extends('portal.app')
 
-@section('title', 'Employees')
+@section('title', 'Buildings')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('portal.employee') }}
+    {{ Breadcrumbs::render('portal.role') }}
 @endsection
 
 @push('css')
@@ -24,13 +24,12 @@
 @section('content')
     <div class="container-fluid">
         <div class="col-md-12">
+
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <h3 class="card-title">Member List</h3>
-                            <a href="{{ route('portal.invitation.create') }}" class="btn btn-sm btn-primary">
-                                <i class="fas fa-user-plus"></i> Invite member
-                            </a>
+                        <h3 class="card-title">Campus Buildings</h3>
+                        <a href="{{ route('portal.building.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Add New Building</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -38,32 +37,31 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Email</th>
-                                <th>900#</th>
-                                <th>Designation</th>
-                                <th style="width: 10%">Status</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($users as $user)
+                            @forelse ($buildings as $building)
                                 <tr>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>900123456</td>
-                                    <td>Member</td>
-                                    <td><small class="badge badge-success">active</small></td>
+                                    <td>{{ $building->name }}</td>
                                     <td>
                                         <div class="btn-group">
-                                                <a type="button" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                                <a type="button" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                                <a type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                            <a type="button" class="btn btn-info" href="{{ route('portal.building.show', $building->id) }}"><i class="fas fa-eye"></i></a>
+                                            <a type="button" class="btn btn-warning" href="{{ route('portal.building.edit', $building->id) }}"><i class="fas fa-edit"></i></a>
+                                            <a class="btn btn-danger" href="#" onclick="if(confirm('Are you sure you want to delete this Building?')) { event.preventDefault(); document.getElementById('building_{{ $building->id }}').submit(); } else { event.preventDefault(); }">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+
+                                            <form id="building_{{ $building->id }}" action="{{ Route('portal.building.destroy', $building->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td>No Data Found</td>
+                                    <td colspan="2">No Data Found</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -72,8 +70,10 @@
             </div>
         </div>
     </div>
-@endsection
 
+
+
+@endsection
 
 @push('script')
     <script>

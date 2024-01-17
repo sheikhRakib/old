@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PortalController;
@@ -40,4 +41,7 @@ Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => 'auth'], 
 
     // Portal > Roles
     Route::resource('role', RoleController::class);
+
+    // Portal > Buildings
+    Route::resource('building', BuildingController::class);
 });
