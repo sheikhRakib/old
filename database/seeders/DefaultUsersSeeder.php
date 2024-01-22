@@ -26,6 +26,6 @@ class DefaultUsersSeeder extends Seeder
             'email'     => 'mdrakibul.islam@student.nmt.edu',
             'password'  => Hash::make('123456'),
         ]);
-        $rakib->assignRole("user");
+        $rakib->assignRole("member");
     }
 }

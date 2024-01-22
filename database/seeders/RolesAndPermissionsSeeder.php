@@ -17,28 +17,28 @@ class RolesAndPermissionsSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $permissions = [
-            'p.*',
-
-            'p.member.*',
-            'p.member.invite',
-            'p.member.view',
-            'p.member.edit',
-            'p.member.delete',
+            ['name' => 'p.*', 'displayname' => 'Permission: Root'],
+            // Employee Permissions
+            ['name' => 'p.employee.*', 'displayname' => 'Permission: Employee Access'],
+            ['name' => 'p.employee.create', 'displayname' => 'Permission: Create Employee'],
+            ['name' => 'p.employee.read', 'displayname' => 'Permission: Read Employee'],
+            ['name' => 'p.employee.update', 'displayname' => 'Permission: Update Employee'],
+            ['name' => 'p.employee.delete', 'displayname' => 'Permission: Delete Employee'],
         ];
 
-        foreach($permissions as $permission) Permission::create(['name' => $permission]);
+        foreach($permissions as $permission) Permission::create(['name' => $permission['name'], 'displayname' => $permission['displayname']]);
 
-        $admin  = Role::create(['name' => 'system']);
-        $user   = Role::create(['name' => 'user']);
+        $system  = Role::create(['name' => 'system', 'displayname' => 'System']);
+        $member   = Role::create(['name' => 'member', 'displayname' => 'Member']);
 
-        $admin_permissions = [
-            'p.*',
-        ];
-        $user_permissions = [
-            'p.member.view',
-        ];
+        // $admin_permissions = [
+        //     'p.*',
+        // ];
+        // $user_permissions = [
+        //     'p.member.view',
+        // ];
 
-        $user->syncPermissions($user_permissions);
-        $admin->syncPermissions($admin_permissions);
+        // $user->syncPermissions($user_permissions);
+        // $admin->syncPermissions($admin_permissions);
     }
 }
