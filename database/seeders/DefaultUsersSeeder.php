@@ -18,6 +18,7 @@ class DefaultUsersSeeder extends Seeder
             'name'      => 'ACT System',
             'email'     => 'act@nmt.edu',
             'password'  => Hash::make('123456'),
+            'system'    => true,
         ]);
         $system->assignRole("system");
 
@@ -26,6 +27,6 @@ class DefaultUsersSeeder extends Seeder
             'email'     => 'mdrakibul.islam@student.nmt.edu',
             'password'  => Hash::make('123456'),
         ]);
-        $rakib->assignRole("user");
+        $rakib->assignRole("member");
     }
 }

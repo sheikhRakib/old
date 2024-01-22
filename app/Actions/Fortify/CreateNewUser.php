@@ -38,10 +38,14 @@ class CreateNewUser implements CreatesNewUsers
 
         $invitee->delete();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        $user->assignRole("member");
+
+        return $user;
     }
 }

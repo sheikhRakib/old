@@ -10,7 +10,7 @@ class PortalController extends Controller
     public function index()
     {
         $data['buildingCount'] = Building::count();
-        $data['memberCount'] = User::where('active', true)->count();
+        $data['memberCount'] = User::members()->where('deleted_at', null)->count();
 
         return view('portal.index', $data);
     }
