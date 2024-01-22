@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PortalController;
@@ -22,7 +23,7 @@ Route::view('/', 'welcome')->name('index');
 Route::redirect('home', 'portal')->name('home');
 
 // Portal
-Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['auth', 'isActive']], function () {
     Route::get('/', [PortalController::class, 'index'])->name('index');
 
     Route::get('profile', [PortalController::class, 'userprofile'])->name('userprofile');
@@ -40,4 +41,7 @@ Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => 'auth'], 
 
     // Portal > Roles
     Route::resource('role', RoleController::class);
+
+    // Portal > Buildings
+    Route::resource('building', BuildingController::class);
 });
