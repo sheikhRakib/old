@@ -15,7 +15,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3 mr-3">
                 <div class="card card-widget widget-user-2 shadow-sm">
                     <div class="widget-user-header bg-gray">
                         <div class="widget-user-image">
@@ -24,7 +24,7 @@
                                 alt="User Avatar">
                         </div>
                         <h3 class="widget-user-username">{{ Auth::user()->name }}</h3>
-                        <h5 class="widget-user-desc">{{ Auth::user()->roles[0]->displayname ?? 'User' }}</h5>
+                        <h5 class="widget-user-desc">{{ Auth::user()->designation }}</h5>
                     </div>
                     <div class="card-footer p-0">
                         <ul class="nav flex-column">
@@ -48,47 +48,19 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 mx-5">
                 <div class="card card-info">
                     <div class="card-header">
                         <h3 class="card-title">Edit Personal Information</h3>
                     </div>
                     <div class="card-body">
-                        <form action="#" method="POST">
-                            <x-form.input name='name' label='Full Name' value="{{ Auth::user()->name }}" />
-
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">900 # </span>
-                                </div>
-                                <input type="text" name='banner' class="form-control" placeholder="900XXXXXX">
-                            </div>
-
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                </div>
-                                <input type="email" name='email' class="form-control" placeholder="Email">
-                            </div>
-
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-check"></i></span>
-                                </div>
-                            </div>
-
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-dollar-sign"></i>
-                                    </span>
-                                </div>
-                                <input type="text" class="form-control">
-                                <div class="input-group-append">
-                                    <div class="input-group-text"><i class="fas fa-ambulance"></i></div>
-                                </div>
-                            </div>
+                        <form action="{{ route('user-profile-information.update') }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <x-form.input.with-label name='name' label='Name' placeholder="Full Name" value="{{ Auth::user()->name ?? '' }}" />
+                            <x-form.input.with-label name='email' label='Email' placeholder="you@example.com" value="{{ Auth::user()->email ?? '' }}" />
+                            <x-form.input.with-label name='banner' label='Banner' placeholder="900XXXXXX" value="{{ Auth::user()->banner }}" />
+                            <x-form.button type="submit" label="Update Profile" class="btn-success" />
                         </form>
                     </div>
                 </div>

@@ -16,7 +16,7 @@ class IsActive
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::user()->active) {
+        if (Auth::user()->deleted_at) {
             Auth::logout();
             return abort(403, 'Your account was suspended');
         }

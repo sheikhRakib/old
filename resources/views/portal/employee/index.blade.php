@@ -50,9 +50,9 @@
                                 <tr>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>900123456</td>
-                                    <td>Member</td>
-                                    <td><small class="badge @if($user->active) badge-success @else badge-danger @endif">@if($user->active) Active @else Inactive @endif</small></td>
+                                    <td>{{ $user->banner ?? '-' }}</td>
+                                    <td>{{ $user->designation }}</td>
+                                    <td><small class="badge @if($user->deleted_at) badge-danger @else badge-success @endif">@if($user->deleted_at) Inactive @else Active @endif</small></td>
                                     <td>
                                         <div class="btn-group">
                                                 <a type="button" class="btn btn-info"><i class="fas fa-eye"></i></a>
