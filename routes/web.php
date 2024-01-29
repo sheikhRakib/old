@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\IpAddressController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PortalController;
 use App\Http\Controllers\RoleController;
@@ -44,4 +45,7 @@ Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['auth', 
 
     // Portal > Buildings
     Route::resource('building', BuildingController::class);
+
+     // Portal > IPAddresses
+     Route::resource('ipAddress', IPAddressController::class);
 });

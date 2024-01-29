@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesAndPermissionsSeeder::class);
         $this->call(DefaultUsersSeeder::class);
         $this->call(BuildingSeeder::class);
+        $this->call(IpAddressSeeder::class);
 
         // \App\Models\User::factory(10)->create();
     }

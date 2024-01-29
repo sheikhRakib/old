@@ -26,7 +26,8 @@
                 {{-- Asset Management --}}
                 <x-portal.sidebar.header label="ASSET MANAGEMENT" />
                 <x-portal.sidebar.item label="Buildings" route="portal.building.index" icon="university" />
-                <x-portal.sidebar.item label="Classrooms" route="portal.permission.index" icon="city" />
+                {{-- <x-portal.sidebar.item label="Classrooms" route="portal.permission.index" icon="city" /> --}}
+                <x-portal.sidebar.item label="IP Addresses" route="portal.ipAddress.index" icon="network-wired" />
             </ul>
 
         </nav>
